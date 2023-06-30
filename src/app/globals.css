@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "PixelFont";
+  src: url('assets/fonts/ARCADECLASSIC.TTF');
+}
+
+
+html {
+    font-family: "PixelFont";
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,4 +34,16 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.pixelation {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.item-container {
+  background-image: url("assets/images/container.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
