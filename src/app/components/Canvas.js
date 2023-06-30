@@ -4,32 +4,30 @@ const Canvas = (props) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        const head = new Image();
+        const hair = new Image();
         const body = new Image();
         const clothes = new Image();
         const eyes = new Image();
         const mouth = new Image();
 
-        head.src = "assets/images/head.png";
         body.src = "assets/images/body.png";
         clothes.src = `assets/images/${props.clothes}`;
-        eyes.src = `assets/images/${props.eyes}`;
+        hair.src = `assets/images/${props.hair}`;
         mouth.src = `assets/images/${props.mouth}`;
+        eyes.src = `assets/images/${props.eyes}`;
 
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
 
-        context.drawImage(body, 0, 85, 90, 105); // size * 5
-        context.drawImage(clothes, 0, 90, 90, 100); // size * 5
-        context.drawImage(head, 0, 0, 90, 95); // size * 5
-        context.drawImage(mouth, 30, 55, 30, 20); // size * 5
-        context.drawImage(eyes, 20, 35, 50, 15); // size * 5
+        context.drawImage(body, 15, 120, 90, 105); // size * 5
+        context.drawImage(clothes, 15, 125, 90, 100); // size * 5
+        context.drawImage(hair, 0, 0, 125, 155); // size * 5
+        context.drawImage(eyes, 35, 80, 50, 15); // size * 5
+        context.drawImage(mouth, 45, 95, 30, 20); // size * 5
+    }, [props.hair, props.eyes, props.mouth, props.clothes]);
 
-        body.onload = () => {};
-    }, [props.eyes, props.mouth, props.clothes]);
-
-    return <canvas ref={canvasRef} {...props} width={90} height={190} />;
+    return <canvas ref={canvasRef} {...props} width={150} height={250} />;
 };
 
 export default Canvas;

@@ -2,6 +2,33 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
     return NextResponse.json({
+        hair: [
+            {
+                id: 1,
+                type: "hair",
+                image: "hair_1.png",
+            },
+            {
+                id: 2,
+                type: "hair",
+                image: "hair_2.png",
+            },
+            {
+                id: 3,
+                type: "hair",
+                image: "hair_3.png",
+            },
+            {
+                id: 4,
+                type: "hair",
+                image: "hair_4.png",
+            },
+            {
+                id: 5,
+                type: "hair",
+                image: "hair_5.png",
+            },
+        ],
         eyes: [
             {
                 id: 1,

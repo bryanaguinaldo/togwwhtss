@@ -22,29 +22,37 @@ const fetcher = async (url) => {
 export default function Home() {
     const { data, error } = useSWR(`/api/items`, fetcher);
 
+    const [hair, setHair] = useState(0);
     const [eyes, setEyes] = useState(0);
     const [mouth, setMouth] = useState(0);
     const [clothes, setClothes] = useState(0);
 
     const [isRestartButton, setIsRestartButton] = useState(false);
     const [isStartButton, setIsStartButton] = useState(true);
+
+    const [isHairButton, setIsHairButton] = useState(false);
     const [isEyesButton, setIsEyesButton] = useState(false);
     const [isMouthButton, setIsMouthButton] = useState(false);
     const [isClothesButton, setIsClothesButton] = useState(false);
 
     const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
+    const isHairRolling = useRef(false);
     const isEyesRolling = useRef(false);
     const isMouthRolling = useRef(false);
     const isClothesRolling = useRef(false);
 
     const rollItem = async (type) => {
+        if (type === "hair") isHairRolling.current = true;
         if (type === "eyes") isEyesRolling.current = true;
         if (type === "mouth") isMouthRolling.current = true;
         if (type === "clothes") isClothesRolling.current = true;
         for (let i = 0; i <= 5; i++) {
             if (i === 5) i = 0;
             switch (type) {
+                case "hair":
+                    setHair(i);
+                    break;
                 case "eyes":
                     setEyes(i);
                     break;
@@ -58,6 +66,7 @@ export default function Home() {
                     console.log(i);
                     break;
             }
+            if (type === "hair" && !isHairRolling.current) break;
             if (type === "eyes" && !isEyesRolling.current) break;
             if (type === "mouth" && !isMouthRolling.current) break;
             if (type === "clothes" && !isClothesRolling.current) break;
@@ -79,11 +88,11 @@ export default function Home() {
                     {isStartButton ? (
                         <div>
                             <button
-                                className="p-2 w-1/2 bg-green border-white bg-green-700 border-2 border-white mb-4"
+                                className="p-2 w-1/2 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
                                 onClick={() => {
-                                    rollItem("eyes");
+                                    rollItem("hair");
                                     setIsStartButton(false);
-                                    setIsEyesButton(true);
+                                    setIsHairButton(true);
                                 }}
                             >
                                 Start Game
@@ -92,26 +101,44 @@ export default function Home() {
                     ) : isRestartButton ? (
                         <div>
                             <button
-                                className="p-2 w-1/2 bg-green border-white bg-green-700 border-2 border-white mb-4"
+                                className="p-2 w-1/2 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
                                 onClick={() => {
+                                    setHair(0);
                                     setEyes(0);
                                     setMouth(0);
                                     setClothes(0);
-                                    rollItem("eyes");
+                                    rollItem("hair");
                                     setIsStartButton(false);
-                                    setIsEyesButton(true);
+                                    setIsHairButton(true);
                                 }}
                             >
                                 Restart Game
                             </button>
                         </div>
                     ) : null}
+                    <span className="font-bold text-lg">Hair:</span>
+                    <div className="flex items-center my-4">
+                        <ItemSet data={data.hair} counter={hair} />
+                        {isHairButton ? (
+                            <button
+                                className="bg-red-700 p-2 border border-2 border-black px-6 ml-5 text-white"
+                                onClick={() => {
+                                    isHairRolling.current = false;
+                                    setIsHairButton(false);
+                                    setIsEyesButton(true);
+                                    rollItem("eyes");
+                                }}
+                            >
+                                Stop
+                            </button>
+                        ) : null}
+                    </div>
                     <span className="font-bold text-lg">Eyes:</span>
                     <div className="flex items-center my-4">
                         <ItemSet data={data.eyes} counter={eyes} />
                         {isEyesButton ? (
                             <button
-                                className="bg-red-700 p-2 border border-2 border-white px-6 ml-5"
+                                className="bg-red-700 p-2 border border-2 border-black px-6 ml-5 text-white"
                                 onClick={() => {
                                     isEyesRolling.current = false;
                                     setIsEyesButton(false);
@@ -128,7 +155,7 @@ export default function Home() {
                         <ItemSet data={data.mouth} counter={mouth} />
                         {isMouthButton ? (
                             <button
-                                className="bg-red-700 p-2 border border-2 border-white px-6 ml-5"
+                                className="bg-red-700 p-2 border border-2 border-black px-6 ml-5 text-white"
                                 onClick={() => {
                                     isMouthRolling.current = false;
                                     setIsMouthButton(false);
@@ -145,7 +172,7 @@ export default function Home() {
                         <ItemSet data={data.clothes} counter={clothes} />
                         {isClothesButton ? (
                             <button
-                                className="bg-red-700 p-2 border border-2 border-white px-6 ml-5"
+                                className="bg-red-700 p-2 border border-2 border-black px-6 ml-5 text-white"
                                 onClick={() => {
                                     isClothesRolling.current = false;
                                     setIsClothesButton(false);
@@ -160,6 +187,7 @@ export default function Home() {
                 <div className="col-span-6 flex items-center justify-center">
                     <Canvas
                         className="pixelation"
+                        hair={data.hair[hair].image}
                         eyes={data.eyes[eyes].image}
                         mouth={data.mouth[mouth].image}
                         clothes={data.clothes[clothes].image}
