@@ -21,14 +21,14 @@ const Canvas = (props) => {
         context.imageSmoothingEnabled = false;
 
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(body, 15, 120, 90, 105); // size * 5
-        context.drawImage(clothes, 15, 125, 90, 100); // size * 5
-        context.drawImage(hair, 0, 0, 125, 155); // size * 5
-        context.drawImage(eyes, 35, 80, 50, 15); // size * 5
-        context.drawImage(mouth, 45, 95, 30, 20); // size * 5
+        context.drawImage(body, 30, 240, 180, 210); // size * 5
+        context.drawImage(clothes, 30, 250, 180, 200); // size * 5
+        context.drawImage(hair, 0, 0, 250, 310); // size * 5
+        context.drawImage(eyes, 70, 160, 100, 30); // size * 5
+        context.drawImage(mouth, 90, 190, 60, 40); // size * 5
     }, [props.hair, props.eyes, props.mouth, props.clothes]);
 
-    return <canvas ref={canvasRef} {...props} width={150} height={250} />;
+    return <canvas ref={canvasRef} {...props} width={250} height={450} />;
 };
 
 export default Canvas;

@@ -82,13 +82,13 @@ export default function Home() {
         );
 
     return (
-        <main className="flex flex-col min-h-screen p-24">
-            <div className="grid grid-cols-12 gap-2">
-                <div className="col-span-6">
+        <main className="flex flex-col min-h-screen lg:justify-center lg:items-center xl:p-24">
+            <div className="grid grid-cols-12 scale-[65%] md:scale-[80%] lg:scale-[85%] xl:scale-[100%]">
+                <div className="col-span-12 lg:col-span-6 flex flex-col items-center px-4 md:px-6 h-fit">
                     {isStartButton ? (
                         <div>
                             <button
-                                className="p-2 w-1/2 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
+                                className="p-2 px-24 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
                                 onClick={() => {
                                     rollItem("hair");
                                     setIsStartButton(false);
@@ -101,7 +101,7 @@ export default function Home() {
                     ) : isRestartButton ? (
                         <div>
                             <button
-                                className="p-2 w-1/2 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
+                                className="p-2 px-24 bg-green border-black bg-green-700 border-2 border-black mb-4 text-white"
                                 onClick={() => {
                                     setHair(0);
                                     setEyes(0);
@@ -115,7 +115,16 @@ export default function Home() {
                                 Restart Game
                             </button>
                         </div>
-                    ) : null}
+                    ) : (
+                        <div>
+                            <button
+                                className="p-2 px-24 bg-green border-black bg-gray-500 border-2 border-black mb-4 text-gray-800"
+                                disabled
+                            >
+                                Restart Game
+                            </button>
+                        </div>
+                    )}
                     <span className="font-bold text-lg">Hair:</span>
                     <div className="flex items-center my-4">
                         <ItemSet data={data.hair} counter={hair} />
@@ -131,7 +140,14 @@ export default function Home() {
                             >
                                 Stop
                             </button>
-                        ) : null}
+                        ) : (
+                            <button
+                                className="bg-gray-500 p-2 border border-2 border-black px-6 ml-5 text-gray-800"
+                                disabled
+                            >
+                                Stop
+                            </button>
+                        )}
                     </div>
                     <span className="font-bold text-lg">Eyes:</span>
                     <div className="flex items-center my-4">
@@ -148,7 +164,14 @@ export default function Home() {
                             >
                                 Stop
                             </button>
-                        ) : null}
+                        ) : (
+                            <button
+                                className="bg-gray-500 p-2 border border-2 border-black px-6 ml-5 text-gray-800"
+                                disabled
+                            >
+                                Stop
+                            </button>
+                        )}
                     </div>
                     <span className="font-bold text-lg">Mouth:</span>
                     <div className="flex items-center my-4">
@@ -165,7 +188,14 @@ export default function Home() {
                             >
                                 Stop
                             </button>
-                        ) : null}
+                        ) : (
+                            <button
+                                className="bg-gray-500 p-2 border border-2 border-black px-6 ml-5 text-gray-800"
+                                disabled
+                            >
+                                Stop
+                            </button>
+                        )}
                     </div>
                     <span className="font-bold text-lg">Clothes:</span>
                     <div className="flex items-center my-4">
@@ -181,10 +211,17 @@ export default function Home() {
                             >
                                 Stop
                             </button>
-                        ) : null}
+                        ) : (
+                            <button
+                                className="bg-gray-500 p-2 border border-2 border-black px-6 ml-5 text-gray-800"
+                                disabled
+                            >
+                                Stop
+                            </button>
+                        )}
                     </div>
                 </div>
-                <div className="col-span-6 flex items-center justify-center">
+                <div className="col-span-12 lg:col-span-6 flex justify-center items-center scale-[80%] md:scale-[90%] lg:scale-[100%]">
                     <Canvas
                         className="pixelation"
                         hair={data.hair[hair].image}
