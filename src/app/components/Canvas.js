@@ -20,6 +20,7 @@ const Canvas = (props) => {
         const context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
 
+        context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(body, 15, 120, 90, 105); // size * 5
         context.drawImage(clothes, 15, 125, 90, 100); // size * 5
         context.drawImage(hair, 0, 0, 125, 155); // size * 5
