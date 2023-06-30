@@ -20,13 +20,11 @@ const Canvas = (props) => {
         const context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
 
-        head.onload = () => {
-            context.drawImage(body, 0, 85, 90, 105); // size * 5
-            context.drawImage(clothes, 0, 90, 90, 100); // size * 5
-            context.drawImage(head, 0, 0, 90, 95); // size * 5
-            context.drawImage(mouth, 30, 55, 30, 20); // size * 5
-            context.drawImage(eyes, 20, 35, 50, 15);
-        };
+        context.drawImage(body, 0, 85, 90, 105); // size * 5
+        context.drawImage(clothes, 0, 90, 90, 100); // size * 5
+        context.drawImage(head, 0, 0, 90, 95); // size * 5
+        context.drawImage(mouth, 30, 55, 30, 20); // size * 5
+        context.drawImage(eyes, 20, 35, 50, 15); // size * 5
 
         body.onload = () => {};
     }, [props.eyes, props.mouth, props.clothes]);
