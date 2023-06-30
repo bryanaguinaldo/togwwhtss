@@ -19,7 +19,6 @@ const Canvas = (props) => {
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
-        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
         head.onload = () => {
             context.drawImage(body, 0, 85, 90, 105); // size * 5
