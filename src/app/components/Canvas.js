@@ -18,7 +18,6 @@ const Canvas = (props) => {
 
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
-        context.fillStyle = "#000";
         context.imageSmoothingEnabled = false;
         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 
