@@ -109,6 +109,7 @@ export default function Home() {
                                     setClothes(0);
                                     rollItem("hair");
                                     setIsStartButton(false);
+                                    setIsRestartButton(false);
                                     setIsHairButton(true);
                                 }}
                             >
@@ -118,7 +119,7 @@ export default function Home() {
                     ) : (
                         <div>
                             <button
-                                className="p-2 px-24 bg-green border-black bg-gray-500 border-2 border-black mb-4 text-gray-800"
+                                className="p-2 px-24 bg-gray-500 border-black bg-gray-500 border-2 border-black mb-4 text-gray-800"
                                 disabled
                             >
                                 Restart Game
@@ -221,14 +222,30 @@ export default function Home() {
                         )}
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-span-6 flex justify-center items-center scale-[80%] md:scale-[90%] lg:scale-[100%]">
+                <div className="col-span-12 lg:col-span-6 flex flex-col justify-center items-center scale-[80%] md:scale-[90%] lg:scale-[100%]">
                     <Canvas
+                        id="pixel-character-canvas"
                         className="pixelation"
                         hair={data.hair[hair].image}
                         eyes={data.eyes[eyes].image}
                         mouth={data.mouth[mouth].image}
                         clothes={data.clothes[clothes].image}
                     />
+                    {/* <button
+                        className="p-4 px-24 bg-yellow-600 border border-2 border-black"
+                        onClick={() => {
+                            var canvas = document.getElementById(
+                                "pixel-character-canvas"
+                            );
+                            var url = canvas.toDataURL("image/png");
+                            var link = document.createElement("a");
+                            link.download = "togwwhtss_character.png";
+                            link.href = url;
+                            link.click();
+                        }}
+                    >
+                        Export Character
+                    </button> */}
                 </div>
             </div>
         </main>
