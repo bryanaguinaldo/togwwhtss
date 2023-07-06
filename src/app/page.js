@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { useEffect, useRef, useState } from "react";
 import ItemSet from "./components/ItemSet";
 import Canvas from "./components/Canvas";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const fetcher = async (url) => {
     const res = await fetch(url);
@@ -83,6 +84,7 @@ export default function Home() {
 
     return (
         <main className="flex flex-col min-h-screen lg:justify-center lg:items-center xl:p-24">
+            <GoogleAnalytics />
             <div className="grid grid-cols-12 scale-[55%] md:scale-[80%] lg:scale-[85%] xl:scale-[100%]">
                 <div className="col-span-12 lg:col-span-6 flex flex-col items-center px-4 md:px-6 h-fit">
                     {isStartButton ? (
